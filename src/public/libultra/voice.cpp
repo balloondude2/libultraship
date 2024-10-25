@@ -106,7 +106,7 @@ int32_t osVoiceInit(OSMesgQueue* mq, OSVoiceHandle* hd, int channel) {
 }
 
 int32_t osVoiceSetWord(OSVoiceHandle* hd, u8* word) {
-    // LUSLOG_DEBUG("osVoiceSetWord", NULL);
+    LUSLOG_DEBUG("osVoiceSetWord first byte: %x", *word);
     return 0;
 }
 
@@ -141,7 +141,7 @@ typedef struct {
 // (800, 2, VOICE_WARN_TOO_SMALL, 500, 2000);
 
 int32_t osVoiceGetReadData(OSVoiceHandle* hd, OSVoiceData* result) {
-    LUSLOG_DEBUG("osVoiceGetReadData", NULL);
+    
     // Hardcoded pictograph command
     // Implement voice recognition stuff to set this data. 
     result->warning = 0;
@@ -150,11 +150,12 @@ int32_t osVoiceGetReadData(OSVoiceHandle* hd, OSVoiceData* result) {
     result->voiceRelLevel = 2500;
     result->answer[0] = 1; //VOICE_WORD_ID_CHEESE;
     result->distance[0] = 10;
+    LUSLOG_DEBUG("osVoiceGetReadData, top answer id: %x", result->answer[0]);
     return 0;
 }
 
 int32_t osVoiceClearDictionary(OSVoiceHandle* hd, u8 numWords) {
-    // LUSLOG_DEBUG("osVoiceClearDictionary", NULL);
+    LUSLOG_DEBUG("osVoiceClearDictionary, numWords: %d", numWords);
     return 0;
 }
 
