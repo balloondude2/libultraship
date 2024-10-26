@@ -8,101 +8,11 @@
 // typedef std::chrono::duration<long long, n64CycleRate> n64CycleRateDuration;
 
 extern "C" {
-// uint8_t __osMaxControllers = MAXCONTROLLERS;
-
-// int32_t osContInit(OSMesgQueue* mq, uint8_t* controllerBits, OSContStatus* status) {
-//     *controllerBits = 0;
-//     status->status |= 1;
-
-//     if (SDL_Init(SDL_INIT_GAMECONTROLLER) != 0) {
-//         SPDLOG_ERROR("Failed to initialize SDL game controllers ({})", SDL_GetError());
-//         exit(EXIT_FAILURE);
-//     }
-
-//     std::string controllerDb = Ship::Context::LocateFileAcrossAppDirs("gamecontrollerdb.txt");
-//     int mappingsAdded = SDL_GameControllerAddMappingsFromFile(controllerDb.c_str());
-//     if (mappingsAdded >= 0) {
-//         SPDLOG_INFO("Added SDL game controllers from \"{}\" ({})", controllerDb, mappingsAdded);
-//     } else {
-//         SPDLOG_ERROR("Failed add SDL game controller mappings from \"{}\" ({})", controllerDb, SDL_GetError());
-//     }
-
-//     Ship::Context::GetInstance()->GetControlDeck()->Init(controllerBits);
-
-//     return 0;
-// }
-
-/**
- * File: voiceinit.c
- *
- * Initializes Voice Recognition System control structure and hardware
- */
-
-// #include "ultra64.h"
-// #include "PR/controller_voice.h"
-// #include "PR/os_voice.h"
-// #include "PR/controller.h"
-// #include "macros.h"
-
-// static u8 sCmds[] = {
-//     0x1E, 0x6E, 0x08, 0x56, 0x03,
-// };
 
 int32_t osVoiceInit(OSMesgQueue* mq, OSVoiceHandle* hd, int channel) {
     LUSLOG_DEBUG("osVoiceInit, channel (ctrlr port): %x", channel);
+    // setupVosk();
     return 0;
-
-//     s32 errorCode;
-//     s32 i;
-//     u8 status = 0;
-//     u8 data[4];
-
-//     hd->channel = channel;
-//     hd->mq = mq;
-//     hd->mode = VOICE_HANDLE_MODE_0;
-
-//     errorCode = __osVoiceGetStatus(mq, channel, &status);
-//     if (errorCode != 0) {
-//         return errorCode;
-//     }
-
-//     if (__osContChannelReset(mq, channel) != 0) {
-//         return CONT_ERR_CONTRFAIL;
-//     }
-
-//     for (i = 0; i < ARRAY_COUNT(sCmds); i++) {
-//         errorCode = __osVoiceSetADConverter(mq, channel, sCmds[i]);
-//         if (errorCode != 0) {
-//             return errorCode;
-//         }
-//     }
-
-//     errorCode = __osVoiceGetStatus(mq, channel, &status);
-//     if (errorCode != 0) {
-//         return errorCode;
-//     }
-//     if (status & 2) {
-//         return CONT_ERR_VOICE_NO_RESPONSE;
-//     }
-
-//     /**
-//      * data[0] = 0
-//      * data[1] = 0
-//      * data[2] = 1
-//      * data[3] = 0
-//      */
-//     *(u32*)data = 0x100;
-//     errorCode = __osVoiceContWrite4(mq, channel, 0, data);
-//     if (errorCode != 0) {
-//         return errorCode;
-//     }
-
-//     errorCode = __osVoiceCheckResult(hd, &status);
-//     if (errorCode & 0xFF00) {
-//         errorCode = CONT_ERR_INVALID;
-//     }
-
-//     return errorCode;
 }
 
 int32_t osVoiceSetWord(OSVoiceHandle* hd, u8* word) {
@@ -168,7 +78,5 @@ int32_t osVoiceControlGain(OSVoiceHandle* hd, s32 analog, s32 digital) {
     // LUSLOG_DEBUG("osVoiceControlGain", NULL);
     return 0;
 }
-
-
 
 }
