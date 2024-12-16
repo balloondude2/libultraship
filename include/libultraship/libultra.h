@@ -27,5 +27,6 @@
 #include "libultra/time.h"
 #include "libultra/types.h"
 #include "libultra/vi.h"
+#include "libultra/voice.h"
 
 #endif
