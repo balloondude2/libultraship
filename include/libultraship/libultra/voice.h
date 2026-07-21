@@ -1,7 +1,6 @@
 #pragma once
 
-#include "ultratypes.h"
-#include "os_message.h"
+#include "message.h"
 
 typedef enum OsVoiceHandleMode {
     /* 0 */ VOICE_HANDLE_MODE_0,
